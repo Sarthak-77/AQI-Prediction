@@ -1,0 +1,357 @@
+:root {
+  --accent: #38bdf8;
+}
+
+/* ---------- Page & animated gradient backdrop ---------- */
+.page {
+  position: relative;
+  min-height: 100svh;
+  padding: 48px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background:
+    radial-gradient(1200px 600px at 50% -10%, rgba(56, 189, 248, 0.08), transparent 60%),
+    linear-gradient(160deg, #0b1120 0%, #0f172a 50%, #0b1120 100%);
+  overflow: hidden;
+}
+
+/* Soft color glow that picks up the AQI category accent */
+.glow {
+  position: absolute;
+  top: -180px;
+  left: 50%;
+  width: 520px;
+  height: 520px;
+  transform: translateX(-50%);
+  background: var(--accent);
+  filter: blur(140px);
+  opacity: 0.22;
+  border-radius: 50%;
+  transition: background 0.6s ease;
+  pointer-events: none;
+}
+
+/* ---------- Glass card ---------- */
+.card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 640px;
+  padding: 36px 32px 40px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  box-shadow:
+    0 20px 60px -20px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  color: #e2e8f0;
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+.card-head {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+h1 {
+  font-size: 34px;
+  margin: 0 0 6px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  background: linear-gradient(90deg, #e2e8f0, #94a3b8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.subtitle {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+/* ---------- Sections ---------- */
+.section {
+  border: none;
+  border-top: 1px solid rgba(148, 163, 184, 0.14);
+  margin: 0;
+  padding: 20px 0 4px;
+}
+
+.section legend {
+  padding: 0 10px 0 0;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--accent);
+  transition: color 0.6s ease;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+  color: #cbd5e1;
+  gap: 6px;
+}
+
+.unit {
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 400;
+}
+
+input,
+select {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  color: #e2e8f0;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+}
+
+/* ---------- Button ---------- */
+button {
+  margin-top: 26px;
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(90deg, #3b82f6, #06b6d4);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+  box-shadow: 0 8px 24px -8px rgba(59, 130, 246, 0.6);
+}
+
+button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px -8px rgba(59, 130, 246, 0.7);
+}
+
+button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.hint {
+  color: #94a3b8;
+  text-align: center;
+  font-size: 13px;
+  margin-top: 14px;
+}
+
+.error {
+  color: #f87171;
+  text-align: center;
+  margin-top: 18px;
+  font-size: 14px;
+}
+
+/* ---------- Result ---------- */
+.result {
+  margin-top: 34px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(148, 163, 184, 0.14);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  animation: rise 0.5s ease;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.gauge {
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+
+.gauge-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.gauge-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.gauge-value {
+  font-size: 52px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.gauge-label {
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: #94a3b8;
+  margin-top: 4px;
+}
+
+.category-pill {
+  padding: 6px 18px;
+  border-radius: 999px;
+  color: #0b1120;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.3px;
+}
+
+/* Good → Severe scale bar */
+.scale {
+  display: flex;
+  width: 100%;
+  max-width: 360px;
+  height: 10px;
+  border-radius: 999px;
+  overflow: hidden;
+  gap: 2px;
+}
+
+.scale-seg {
+  flex: 1;
+  opacity: 0.35;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.scale-seg.active {
+  opacity: 1;
+  transform: scaleY(1.6);
+  border-radius: 3px;
+}
+
+/* ---------- Drivers (explainability) ---------- */
+.drivers {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.drivers-title {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #94a3b8;
+  text-align: center;
+  margin: 0 0 16px;
+}
+
+.drivers-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.driver-row {
+  display: grid;
+  grid-template-columns: 120px 1fr 48px;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+}
+
+.driver-name {
+  color: #cbd5e1;
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.driver-track {
+  height: 10px;
+  background: rgba(148, 163, 184, 0.12);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.driver-bar {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  animation: grow 0.6s ease;
+}
+
+.driver-bar.up {
+  background: linear-gradient(90deg, #fb923c, #f87171);
+}
+
+.driver-bar.down {
+  background: linear-gradient(90deg, #4ade80, #a3e635);
+}
+
+@keyframes grow {
+  from { width: 0 !important; }
+}
+
+.driver-val {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  text-align: left;
+}
+
+.driver-val.up { color: #fb923c; }
+.driver-val.down { color: #4ade80; }
+
+.drivers-foot {
+  margin: 14px 0 0;
+  font-size: 11px;
+  color: #64748b;
+  text-align: center;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 560px) {
+  .card {
+    padding: 26px 18px 30px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  h1 {
+    font-size: 28px;
+  }
+  .driver-row {
+    grid-template-columns: 92px 1fr 40px;
+    gap: 8px;
+    font-size: 12px;
+  }
+}
