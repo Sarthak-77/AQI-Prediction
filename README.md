@@ -4,7 +4,7 @@ A full-stack machine-learning app that predicts India's **Air Quality Index (AQI
 from pollutant concentrations, weather conditions, and location, then classifies
 the result on the official CPCB scale (Good → Severe).
 
-> **Live demo:** _add your deployed frontend URL here_
+> **Live demo:** https://aqi-frontend-two.vercel.app
 > **API:** https://aqi-prediction-l2gz.onrender.com
 
 <!-- Add a screenshot or GIF of the app here — it's the single biggest thing reviewers look at -->
@@ -83,11 +83,12 @@ boundary logic.
 
 ## Deployment
 
-- **API** is hosted on Render.
-- **Frontend** is configured for Vercel (`aqi-frontend/vercel.json`). Deploy with:
+- **API** is hosted on Render → https://aqi-prediction-l2gz.onrender.com
+- **Frontend** is hosted on Vercel → https://aqi-frontend-two.vercel.app
+  (config in `aqi-frontend/vercel.json`). Redeploy with:
   ```bash
   cd aqi-frontend
-  npx vercel            # set VITE_API_URL in the Vercel project env vars
+  npx vercel --prod     # set VITE_API_URL in the Vercel project env vars
   ```
 
 ## API reference
@@ -143,4 +144,4 @@ Other endpoints: `GET /` (status) and `GET /health` (health check).
 - [x] Feature explainability (which inputs drove the prediction)
 - [x] Input range validation on both client and server
 - [x] Unit tests for `/predict`
-- [ ] Deploy the frontend and add the live link above
+- [x] Deploy the frontend and add the live link above
